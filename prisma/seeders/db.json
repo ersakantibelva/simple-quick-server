@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "email": "gkidds0@usgs.gov",
+      "password": "64Nh9y",
+      "name": "Kidds"
+    },
+    {
+      "email": "frosengren1@joomla.org",
+      "password": "NyyESXEu",
+      "name": "Rosengren"
+    },
+    {
+      "email": "nfears2@oaic.gov.au",
+      "password": "27jfKjJ54t5U",
+      "name": "Fears"
+    },
+    {
+      "email": "rhebborne3@clickbank.net",
+      "password": "GifB4kwInB",
+      "name": "Hebborne"
+    },
+    {
+      "email": "rcrohan4@last.fm",
+      "password": "0aAnfUrrW",
+      "name": "Crohan"
+    },
+    {
+      "email": "gdevinn5@taobao.com",
+      "password": "NJjATZ03pTD",
+      "name": "Devinn"
+    },
+    {
+      "email": "ppordall6@ning.com",
+      "password": "IPE4d6XIQo",
+      "name": "Pordall"
+    },
+    {
+      "email": "hvallis7@usda.gov",
+      "password": "WspXw8A8X",
+      "name": "Vallis"
+    },
+    {
+      "email": "wdower8@comsenz.com",
+      "password": "ybCjLJR0",
+      "name": "Dower"
+    },
+    {
+      "email": "tqueen9@blogtalkradio.com",
+      "password": "EWAcSE",
+      "name": "Queen"
+    }
+  ]
+}

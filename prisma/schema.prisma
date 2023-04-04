@@ -9,3 +9,31 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  password String
+  name     String
+  tasks    Tasks[]
+}
+
+model Types {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  tasks Tasks[]
+}
+
+model Tasks {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  dueDate     DateTime
+  createdAt   DateTime @default(now())
+  isCompleted Boolean  @default(false)
+  isDeleted   Boolean  @default(false)
+  author      Users    @relation(fields: [authorId], references: [id])
+  authorId    Int
+  Types       Types    @relation(fields: [typesId], references: [id])
+  typesId     Int
+}

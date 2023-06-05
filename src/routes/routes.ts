@@ -3,6 +3,8 @@ import Controller from "../contollers";
 
 const router = express.Router()
 
+router.post('/login', Controller.login)
+
 router.get('/users', Controller.getUsers)
 router.post('/users', Controller.createUser)
 router.get('/types', Controller.getTypes)

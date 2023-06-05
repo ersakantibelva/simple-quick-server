@@ -1,9 +1,13 @@
 # Endpoint
 
+## Login
+
+1. POST /login
+
 ## Users
 
 1. GET /users
-2. POST /useras
+2. POST /users
 
 ## Types
 

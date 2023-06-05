@@ -13,6 +13,7 @@ const errorHandler = (err: any, req: Request, res: Response, next: NextFunction)
   
   switch (err.code) {
     case 400:
+    case 401:
       code = err.code
       message = err.message
       break;

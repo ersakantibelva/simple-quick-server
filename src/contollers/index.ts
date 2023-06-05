@@ -1,9 +1,37 @@
 import { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
+import { createToken } from '../helpers/jwt'
 
 const prisma = new PrismaClient()
 
 export default class Controller {
+  static async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email, password } = req.body
+      if (!email) throw { code: 400, message: 'Email is Required' }
+      if (!password) throw { code: 400, message: 'Password is Required' }
+
+      const user = await prisma.users.findUnique({
+        where: {
+          email,
+        }
+      })
+      if(!user) throw { code: 401, message: 'Invalid email/password' }
+
+      if (user.password !== password) throw { code: 401, message: 'Invalid email/password' }
+
+      const payload: object = {
+        email: user.email
+      }
+      
+      const accessToken: string = createToken(payload)
+
+      res.status(200).json({ accessToken, user: { id: user.id } })
+    } catch (error) {
+      next(error)
+    }
+  }
+
   static async getUsers(req: Request, res: Response, next: NextFunction) {
     try {
       const users = await prisma.users.findMany()
@@ -20,12 +48,24 @@ export default class Controller {
       if (!password) throw { code: 400, message: 'Password is Required' }
       if (!name) throw { code: 400, message: 'Name is Required' }
 
-      const userCreated = await prisma.users.create({
-        data: {
+      const createUserValidator = (
+        email: string,
+        password: string,
+        name: string,
+      ) => {
+        return Prisma.validator<Prisma.UsersCreateInput>()({
           email,
           password,
-          name,
-        }
+          name
+        }) 
+      }
+
+      const userCreated = await prisma.users.create({
+        data: createUserValidator(
+          email,
+          password,
+          name
+        )
       })
     
       res.status(200).json(userCreated)

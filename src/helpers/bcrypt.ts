@@ -1,5 +1,7 @@
-import bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 
-export const hashPass = (pass: string) => bcrypt.hashSync(pass, 8)
+const hashPass = (pass: string) => bcryptjs.hashSync(pass, 8)
 
-export const comparePass = (hashed: string, pass: string) => bcrypt.compareSync(hashed, pass) 
+const comparePass = (hashed: string, pass: string) => bcryptjs.compareSync(hashed, pass) 
+
+export default { hashPass, comparePass }

@@ -108,7 +108,18 @@ export default class Controller {
 
   static async createTask(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, description, dueDate, isCompleted, TypeId } = req.body
+      const { title, dueDate, TypesId, authorId } = req.body
+
+      const newTask = await prisma.tasks.create({
+        data: {
+          title,
+          dueDate,
+          Types: { connect: { id: TypesId } },
+          author: { connect: { id: authorId } }
+        }
+      })
+
+      res.status(200).json({ message: 'Task successfully created', task: newTask })
     } catch (error) {
       next(error)
     }
